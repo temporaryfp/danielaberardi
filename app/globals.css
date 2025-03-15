@@ -1,0 +1,260 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-playfair: '';
+  --font-montserrat: '';
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #f5e6d3;
+  color: black;
+}
+
+@layer base {
+  html {
+    font-family: system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  .font-playfair {
+    font-family: var(--font-playfair), serif;
+  }
+  
+  .font-montserrat {
+    font-family: var(--font-montserrat), sans-serif;
+  }
+}
+
+/* Architectural Elements */
+.architectural-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+.architectural-grid-line {
+  width: 1px;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.architectural-accent {
+  position: absolute;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+}
+
+/* Architectural Background Pattern */
+.architectural-bg {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.architectural-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/background.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.15;
+  z-index: -1;
+  filter: contrast(0.9) brightness(1.1);
+  mix-blend-mode: overlay;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-stone-100;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-stone-300 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-stone-400;
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 10s linear infinite;
+}
+
+/* Retro Effects */
+.glitch-text {
+  text-shadow: 
+    0.05em 0 0 rgba(255, 0, 0, 0.75),
+    -0.025em -0.05em 0 rgba(0, 255, 0, 0.75),
+    0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
+  animation: glitch 4000ms infinite;
+}
+
+.monospace-numbers {
+  font-variant-numeric: tabular-nums;
+}
+
+@keyframes glitch {
+  0% {
+    text-shadow: 
+      0.05em 0 0 rgba(255, 0, 0, 0.75),
+      -0.025em -0.05em 0 rgba(0, 255, 0, 0.75),
+      0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+  14% {
+    text-shadow: 
+      0.05em 0 0 rgba(255, 0, 0, 0.75),
+      -0.025em -0.05em 0 rgba(0, 255, 0, 0.75),
+      0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+  15% {
+    text-shadow: 
+      -0.05em -0.025em 0 rgba(255, 0, 0, 0.75),
+      0.025em 0.025em 0 rgba(0, 255, 0, 0.75),
+      -0.05em -0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+  49% {
+    text-shadow: 
+      -0.05em -0.025em 0 rgba(255, 0, 0, 0.75),
+      0.025em 0.025em 0 rgba(0, 255, 0, 0.75),
+      -0.05em -0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+  50% {
+    text-shadow: 
+      0.025em 0.05em 0 rgba(255, 0, 0, 0.75),
+      0.05em 0 0 rgba(0, 255, 0, 0.75),
+      0 -0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+  99% {
+    text-shadow: 
+      0.025em 0.05em 0 rgba(255, 0, 0, 0.75),
+      0.05em 0 0 rgba(0, 255, 0, 0.75),
+      0 -0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+  100% {
+    text-shadow: 
+      -0.025em 0 0 rgba(255, 0, 0, 0.75),
+      -0.025em -0.025em 0 rgba(0, 255, 0, 0.75),
+      -0.025em -0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+}
+
+@keyframes scan {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(100%);
+  }
+
+}
+
+.animate-scan {
+  animation: scan 2s linear infinite;
+}
+
+.animate-blink {
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+::selection {
+  background: rgba(244, 244, 245, 0.1);
+}
+
+/* Smooth transitions */
+* {
+  @apply transition-colors duration-200;
+}
+
+/* Custom image hover effect */
+.image-hover {
+  @apply transition-transform duration-500;
+}
+
+.image-hover:hover {
+  @apply scale-105;
+}
+
+/* Custom link underline animation */
+.link-underline {
+  @apply relative;
+}
+
+.link-underline::after {
+  content: '';
+  @apply absolute bottom-0 left-0 w-0 h-px bg-current transition-all duration-300;
+}
+
+.link-underline:hover::after {
+  @apply w-full;
+}
+
+/* Architectural Decorative Elements */
+.arch-corner {
+  position: absolute;
+  width: 2rem;
+  height: 2rem;
+  border-width: 1px;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.arch-corner-tl {
+  top: 1rem;
+  left: 1rem;
+  border-top-style: solid;
+  border-left-style: solid;
+  border-top-left-radius: 0.5rem;
+}
+
+.arch-corner-tr {
+  top: 1rem;
+  right: 1rem;
+  border-top-style: solid;
+  border-right-style: solid;
+  border-top-right-radius: 0.5rem;
+}
+
+.arch-corner-bl {
+  bottom: 1rem;
+  left: 1rem;
+  border-bottom-style: solid;
+  border-left-style: solid;
+  border-bottom-left-radius: 0.5rem;
+}
+
+.arch-corner-br {
+  bottom: 1rem;
+  right: 1rem;
+  border-bottom-style: solid;
+  border-right-style: solid;
+  border-bottom-right-radius: 0.5rem;
+} 
