@@ -15,8 +15,8 @@ const playfair = Playfair_Display({
 });
 
 export const metadata = {
-  title: "Avv. Daniela Berardi | Real Estate Law",
-  description: "Legal expertise in real estate law and property development. Specialized in architectural transformation projects across Italy.",
+  title: "Daniela Berardi",
+  description: "Every home has its own soul.",
 };
 
 export default function RootLayout({
